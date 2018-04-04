@@ -11,11 +11,12 @@ class Repository:
         Repository class to hold the list of students, instructors and grades
     """ 
 
-    def __init__(self):
+    def __init__(self,dir_path):
         """
         dictioary to store student cwid as key and the student instance as value
         """
         self.students = dict()
+        
 
         """
         dictioary to store instructor cwid as key and the instructor instance as value
@@ -26,6 +27,18 @@ class Repository:
         list to store all the instance of Grade
         """
         self.grades = list()
+
+        """
+        Steps to read student, instructor and grade file and print the summary
+        """
+        self.read_student_file()
+        self.read_instructor_file()
+        self.read_grade_file()
+        self.add_student_grade()
+        self.add_number_of_student()
+        print("Repository for",dir_path)
+        self.print_student_summary()
+        self.print_instructor_summary()
 
     def add_student(self,student):
         self.students[student.cwid] = student
@@ -174,15 +187,8 @@ def main():
         except (TypeError,FileNotFoundError):
             print("Invalid directory path")
         else:
-            r = Repository()
-            r.read_student_file()
-            r.read_instructor_file()
-            r.read_grade_file()
-            r.add_student_grade()
-            r.add_number_of_student()
-            print("Repository for",dir_path)
-            r.print_student_summary()
-            r.print_instructor_summary()
+            r = Repository(dir_path)
+            
         
 if __name__ == "__main__":
     main()              

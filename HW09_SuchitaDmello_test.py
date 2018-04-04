@@ -14,34 +14,28 @@ class TestClass(unittest.TestCase):
         """
         Test the read student file method
         """
-        r = Repository()
-        r.read_student_file()
+        r = Repository("C:\Stevens_data_file")
         self.assertEquals(10,len(r.students))
 
     def test_read_instructor_file(self):
         """
         Test the read instructor file method
         """
-        r = Repository()
-        r.read_instructor_file()
+        r = Repository("C:\Stevens_data_file")
         self.assertEquals(6,len(r.instructors))
 
     def test_read_grade_file(self):
         """
         Test the read grade file methode
         """
-        r = Repository()
-        r.read_grade_file()
+        r = Repository("C:\Stevens_data_file")
         self.assertEquals(23,len(r.grades))
 
     def test_add_student_grade(self):
         """
         Test the add grades and course to student method
         """
-        r = Repository()
-        r.read_student_file()
-        r.read_grade_file()
-        r.add_student_grade()
+        r = Repository("C:\Stevens_data_file")
         s =r.students.get("10103")
         self.assertEquals(len(s.grade), 4)
 
@@ -49,10 +43,7 @@ class TestClass(unittest.TestCase):
         """
         Test the add number of students for the courses taught by instructor
         """
-        r = Repository()
-        r.read_instructor_file()
-        r.read_grade_file()
-        r.add_number_of_student()
+        r = Repository("C:\Stevens_data_file")
         i =r.instructors.get("98765")
         self.assertEquals(len(i.courses), 3)
         self.assertEquals(i.courses.get("SSW 567"), 4)
